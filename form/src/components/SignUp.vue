@@ -68,6 +68,11 @@ export default {
     },
     handleSubmit() {
       console.log("handling submit");
+      console.log("email: ", this.email);
+      console.log("password: ", this.password);
+      console.log("role: ", this.role);
+      console.log("skills: ", this.skills);
+      console.log("terms accepted: ", this.term);
       this.passwordError =
         this.password.length > 5
           ? ""
