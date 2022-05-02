@@ -15,16 +15,49 @@
         <option value="designer">Web designer</option>
       </select>
     </div>
+    <div className="form-field">
+      <label>Skills:(alt+,=>to add the skills)</label>
+      <input type="text" v-model="skill" @keyup.alt="addSkills" />
+    </div>
+    <div className="checkbox-field">
+      <input type="checkbox" v-model="term" required />
+      <label for="" className="checkbox-label"
+        >Accept the terms and condition</label
+      >
+    </div>
   </form>
   <p>email: {{ email }}</p>
   <p>password: {{ password }}</p>
-  <p>role:  {{role}}</p>
+  <p>role: {{ role }}</p>
+  <p>term: {{ term }}</p>
+  <p>Skills:
+    <ul v-for="s in skills" :key="s">
+      <li>{{s}}</li>
+    </ul>
+  </p>
 </template>
 
 <script>
 export default {
   data() {
-    return { email: "", password: "",role:"" };
+    return {
+      email: "",
+      password: "",
+      role: "",
+      term: false,
+      skill: "",
+      skills: [],
+    };
+  },
+  methods: {
+    addSkills(e) {
+      if (e.key === "," && this.skills) {
+        if (!this.skills.includes(this.skill)) {
+          this.skills.push(this.skill);
+        }
+        this.skill=""
+      }
+    },
   },
 };
 </script>
@@ -56,5 +89,16 @@ select {
   border: none;
   border-bottom: 1px solid #ddd;
   color: #555;
+}
+input[type="checkbox"] {
+  display: inline-block;
+  width: 16px;
+  margin: 0 10px 0 0;
+  position: relative;
+  top: 2px;
+}
+.checkbox-field {
+  display: flex;
+  margin-top: 10px;
 }
 </style>
