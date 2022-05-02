@@ -1,40 +1,44 @@
 <template>
-  <form action="">
-    <div className="form-field">
-      <label>Email:</label>
-      <input type="text" required v-model="email" />
-    </div>
-    <div className="form-field">
-      <label>Password:</label>
-      <input type="password" required v-model="password" />
-    </div>
-    <div className="form-field">
-      <label for=""> Role:</label>
-      <select v-model="role">
-        <option value="developer">Web developer</option>
-        <option value="designer">Web designer</option>
-      </select>
-    </div>
-    <div className="form-field">
-      <label>Skills:(alt+,=>to add the skills)</label>
-      <input type="text" v-model="skill" @keyup.alt="addSkills" />
-    </div>
-    <div className="checkbox-field">
-      <input type="checkbox" v-model="term" required />
-      <label for="" className="checkbox-label"
-        >Accept the terms and condition</label
-      >
-    </div>
-  </form>
-  <p>email: {{ email }}</p>
-  <p>password: {{ password }}</p>
-  <p>role: {{ role }}</p>
-  <p>term: {{ term }}</p>
-  <p>Skills:
-    <ul v-for="s in skills" :key="s">
-      <li>{{s}}</li>
-    </ul>
-  </p>
+  <div>
+    <form @submit.prevent="handleSubmit">
+      <div className="form-field">
+        <label>Email:</label>
+        <input type="text" required v-model="email" />
+      </div>
+      <div className="form-field">
+        <label>Password:</label>
+        <input type="password" required v-model="password" />
+        <p v-if="passwordError" className="error">{{ passwordError }}</p>
+      </div>
+      <div className="form-field">
+        <label for=""> Role:</label>
+        <select v-model="role" required>
+          <option value="developer">Web developer</option>
+          <option value="designer">Web designer</option>
+        </select>
+      </div>
+      <div className="form-field">
+        <label>Skills:(alt+,=>to add the skills)</label>
+        <input type="text" v-model="skill" @keyup.alt="addSkills" />
+        <div v-for="s in skills" :key="s" className="skill">
+          <span @click="deleteSkill(s)">{{ s }}</span>
+        </div>
+      </div>
+      <div className="checkbox-field">
+        <input type="checkbox" v-model="term" required />
+        <label for="" className="checkbox-label"
+          >Accept the terms and condition</label
+        >
+      </div>
+      <div className="submit">
+        <button className="btn">create account</button>
+      </div>
+    </form>
+    <p>email: {{ email }}</p>
+    <p>password: {{ password }}</p>
+    <p>role: {{ role }}</p>
+    <p>term: {{ term }}</p>
+  </div>
 </template>
 
 <script>
@@ -47,6 +51,7 @@ export default {
       term: false,
       skill: "",
       skills: [],
+      passwordError: "",
     };
   },
   methods: {
@@ -55,8 +60,18 @@ export default {
         if (!this.skills.includes(this.skill)) {
           this.skills.push(this.skill);
         }
-        this.skill=""
+        this.skill = "";
       }
+    },
+    deleteSkill(s) {
+      this.skills = this.skills.filter((skill) => skill !== s);
+    },
+    handleSubmit() {
+      console.log("handling submit");
+      this.passwordError =
+        this.password.length > 5
+          ? ""
+          : "Password must be at least 6 characters long";
     },
   },
 };
@@ -68,9 +83,8 @@ form {
   background: #fff;
   margin: auto;
   padding: 30px 20px;
-  display: flex;
+  text-align: left;
   border-radius: 10px;
-  flex-direction: column;
 }
 .form-field {
   margin-bottom: 10px;
@@ -100,5 +114,34 @@ input[type="checkbox"] {
 .checkbox-field {
   display: flex;
   margin-top: 10px;
+}
+.skill {
+  display: inline-block;
+  background: beige;
+  color: #737678;
+  padding: 5px;
+  margin-right: 8px;
+  margin-top: 10px;
+  border-radius: 10px;
+  justify-content: flex-start;
+  cursor: pointer;
+}
+.submit {
+  text-align: center;
+  margin-top: 5px;
+}
+.btn {
+  border-radius: 20px;
+  border: none;
+  background: #483d8b;
+  color: #fff;
+  font-size: 15px;
+  text-transform: capitalize;
+  padding: 8px 20px;
+}
+.error {
+  color: rgb(240, 44, 44);
+  font-size: 15px;
+  text-transform: capitalize;
 }
 </style>
