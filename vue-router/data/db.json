@@ -1,0 +1,19 @@
+{
+  "jobs": [
+    {
+      "title": "Web designer",
+      "id": 1,
+      "details": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo, earum!"
+    },
+    {
+      "title": "Web Developer",
+      "id": 2,
+      "details": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo, earum!"
+    },
+    {
+      "title": "DevOps",
+      "id": 3,
+      "details": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo, earum!"
+    }
+  ]
+}

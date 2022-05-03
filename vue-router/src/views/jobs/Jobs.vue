@@ -2,9 +2,9 @@
   <div>
     <h1 className="heading">Jobs</h1>
     <div v-for="job in jobs" :key="job.id">
-        <router-link :to="{ name: 'jobDetails', params: { id: job.id } }">
-          <h4 class="job-title">{{ job.title }}</h4>
-        </router-link>
+      <router-link :to="{ name: 'jobDetails', params: { id: job.id } }">
+        <h4 class="job-title">{{ job.title }}</h4>
+      </router-link>
     </div>
   </div>
 </template>
@@ -13,28 +13,15 @@
 export default {
   data() {
     return {
-      jobs: [
-        {
-          title: "Web designer",
-          id: 1,
-          details:
-            "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo, earum!",
-        },
-        {
-          title: "Web Developer",
-          id: 2,
-          details:
-            "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo, earum!",
-        },
-        {
-          title: "DevOps",
-          id: 3,
-          details:
-            "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo, earum!",
-        },
-      ],
+      jobs: [],
     };
   },
+  mounted(){
+    fetch('http://localhost:3000/jobs')
+  .then(response => response.json())
+  .then(data => this.jobs=data);
+
+  }
 };
 </script>
 
@@ -49,7 +36,7 @@ export default {
   text-align: center;
   border-radius: 8px;
 }
- a{
+a {
   text-decoration: none;
 }
 .job-title:hover {

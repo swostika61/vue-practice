@@ -1,7 +1,10 @@
 <template>
   <div>
     <h1 className="heading">Job Details</h1>
-    <p>this is {{id}}</p>
+    <h2>{{ job.title }}</h2>
+    <p>
+      {{ job.details }}
+    </p>
   </div>
 </template>
 
@@ -10,7 +13,13 @@ export default {
   data() {
     return {
       id: this.$route.params.id,
+      job: [],
     };
+  },
+  mounted() {
+    fetch(`http://localhost:3000/jobs/${this.id}`)
+      .then((response) => response.json())
+      .then((data) => (this.job = data));
   },
 };
 </script>
