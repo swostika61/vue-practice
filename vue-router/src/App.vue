@@ -1,10 +1,12 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link :to="{name:'about'}">About</router-link> |
-    <router-link to="/jobs">Jobs</router-link>
-  </nav>
-  <router-view />
+  <div>
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link :to="{ name: 'about' }">About</router-link> |
+      <router-link to="/jobs">Jobs</router-link>
+    </nav>
+    <router-view />
+  </div>
 </template>
 
 <style>
@@ -24,13 +26,12 @@ nav a {
   font-weight: bold;
   color: #2c3e50;
   text-decoration: none;
-
 }
 
 nav a.router-link-exact-active {
   background: #95caec;
-  color:#fff;
-  padding:5px;
+  color: #fff;
+  padding: 5px;
   border-radius: 3px;
 }
 </style>
