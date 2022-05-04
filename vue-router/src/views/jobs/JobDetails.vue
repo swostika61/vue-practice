@@ -1,10 +1,15 @@
 <template>
   <div>
-    <h1 className="heading">Job Details</h1>
-    <h2>{{ job.title }}</h2>
-    <p>
-      {{ job.details }}
-    </p>
+    <div v-if="job">
+      <h1 className="heading">Job Details</h1>
+      <h2>{{ job.title }}</h2>
+      <p>
+        {{ job.details }}
+      </p>
+    </div>
+    <div v-else>
+      <p>no jobs available</p>
+    </div>
   </div>
 </template>
 
@@ -13,7 +18,7 @@ export default {
   data() {
     return {
       id: this.$route.params.id,
-      job: [],
+      job: null,
     };
   },
   mounted() {
