@@ -3,7 +3,7 @@
     <h2>REF</h2>
     <p>I am {{ obj1.name }}. My name is {{ obj1.age }}</p>
     <button @click="handleObj1">update obj1</button>
-    <input type="text" placeholder="serch" v-model="search" />
+    <input type="text" placeholder="search" v-model="search" />
     <h2>Matching names:</h2>
     <div v-if="matching.length !== 0">
       <p v-for="name in matching" :key="name">{{ name }}</p>
