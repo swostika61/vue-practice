@@ -1,5 +1,53 @@
 <template>
   <div>
+    <h1>Home</h1>
+    <div v-if="error" class="err">
+      <h5>{{ error }}</h5>
+    </div>
+    <PostList v-if="showpost" :posts="posts" />
+    <button @click="showpost = !showpost">toggle post</button><br />
+    <button @click="posts.pop()">delete post</button>
+  </div>
+</template>
+
+<script>
+import { ref } from "vue";
+import PostList from "../components/PostList.vue";
+
+export default {
+  name: "Home",
+  setup() {
+    const posts = ref([]);
+    const error = ref(null);
+    const load = async () => {
+      try {
+        let data = await fetch("http://localhost:3000/posts");
+        posts.value = await data.json();
+        if (!data.ok) {
+          throw Error("no data available");
+        }
+      } catch (err) {
+        error.value = err.message;
+        console.log(error.value);
+      }
+    };
+    load();
+    const showpost = ref(true);
+    return { posts, showpost, error };
+  },
+  components: { PostList },
+};
+</script>
+
+<style>
+.err {
+  color: red;
+}
+</style>
+<!--  practice 1----------------------->
+
+<!--<template>
+  <div>
     <h2>REF</h2>
     <p>I am {{ obj1.name }}. My name is {{ obj1.age }}</p>
     <button @click="handleObj1">update obj1</button>
@@ -70,8 +118,8 @@ export default {
 };
 </script>
 
-<style></style>
-
+<style></style>-->
+<!--  practice 1----------------------->
 <!-- <template>
   <div class="home">
     <h1>home</h1>

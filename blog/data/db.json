@@ -1,0 +1,16 @@
+{
+  "posts": [
+    {
+      "title": "Welcome Home",
+      "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic aliquid vero possimus quos numquam dicta rem magnam magni nihil dolor cum libero esse laboriosam earum impedit commodi natus, consequatur doloremque blanditiis. Rem accusantium modi dolore facilis et minus incidunt eum maiores ea. Repellendus, ea rerum, reiciendis distinctio obcaecati debitis pariatur tempore quae, mollitia asperiores possimus! Voluptatibus ut aliquam reprehenderit dicta vel molestias porro ipsam assumenda saepe reiciendis vero iusto ea rerum minus, dolor exercitationem quod veniam eveniet voluptate! Incidunt dolorum soluta, quae aut eveniet dolorem tempore eos eaque debitis eum pariatur. Autem reiciendis necessitatibus voluptas repellat obcaecati debitis accusamus officia?",
+      "id": 1,
+      "tags": ["news", "post", "coding"]
+    },
+    {
+      "title": "Welcome Swostika",
+      "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic aperiam facilis libero, voluptatem, explicabo quaerat consequatur qui iusto praesentium deleniti et sapiente perferendis, nulla soluta doloribus nobis impedit expedita maxime minima dolorem quam? Eligendi, quaerat ad? Error consequatur hic reprehenderit voluptate numquam necessitatibus maxime quo non, quidem consequuntur perspiciatis quibusdam architecto provident unde iste! Porro incidunt aperiam ex omnis sunt vitae quisquam saepe voluptas dignissimos delectus, dolorem alias qui repellendus magni id architecto eius velit recusandae unde illum inventore fugiat sed? Consectetur deserunt ipsa magni? Debitis fugiat rem quasi tenetur dolor quam officiis ipsam, unde asperiores animi nostrum provident harum molestias reiciendis nulla. Incidunt ducimus tempora culpa perspiciatis dignissimos quisquam illo fuga iure distinctio inventore et, modi iste aliquam voluptatem, ullam laudantium ab autem aperiam sequi explicabo labore deserunt quas, nihil rem? Nihil perspiciatis suscipit labore dignissimos vero aliquid, praesentium enim asperiores doloribus omnis ab pariatur culpa rem nemo neque.",
+      "id": 1,
+      "tags": ["news", "post", "coding"]
+    }
+  ]
+}
