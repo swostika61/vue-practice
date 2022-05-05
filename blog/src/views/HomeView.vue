@@ -8,15 +8,16 @@
     <div v-if="matching.length !== 0">
       <p v-for="name in matching" :key="name">{{ name }}</p>
     </div>
-    <div v-else><p>no match</p></div>
+    <div v-else><p>no match found</p></div>
     <h2>REACTIVE</h2>
     <p>{{ obj2.name }}- {{ obj2.age }}</p>
     <button @click="handleObj2">update obj2</button>
+    <button @click="handleWatch">stop watching</button>
   </div>
 </template>
 
 <script>
-import { reactive, ref, computed } from "vue";
+import { reactive, ref, computed, watch, watchEffect } from "vue";
 
 export default {
   name: "HomeView",
@@ -28,6 +29,16 @@ export default {
     });
     const names = ref(["swos", "kri", "abi", "riti", "suru", "asmi"]);
     const search = ref("");
+    const stopwatch = watch(search, () => {
+      console.log("watch function run");
+    });
+    const stopwatchEffect = watchEffect(() => {
+      console.log("watch effect function run");
+    });
+    const handleWatch = () => {
+      stopwatch();
+      stopwatchEffect();
+    };
     const matching = computed(() => {
       return names.value.filter((jj) => jj.includes(search.value));
     });
@@ -45,7 +56,16 @@ export default {
       obj2.name = "swosti";
       obj2.age = 23;
     };
-    return { obj1, handleObj1, obj2, handleObj2, names, matching, search };
+    return {
+      obj1,
+      handleObj1,
+      obj2,
+      handleObj2,
+      names,
+      matching,
+      search,
+      handleWatch,
+    };
   },
 };
 </script>
