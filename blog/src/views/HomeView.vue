@@ -4,33 +4,23 @@
     <div v-if="error" class="err">
       <h5>{{ error }}</h5>
     </div>
-    <PostList v-if="showpost" :posts="posts" />
-    <button @click="showpost = !showpost">toggle post</button><br />
-    <button @click="posts.pop()">delete post</button>
+    <div v-if="posts.length">
+      <PostList v-if="showpost" :posts="posts" />
+    </div>
+    <div v-else><p>Loading...</p></div>
+    <button class="btn" @click="showpost = !showpost">toggle post</button><br />
+    <button class="btn" @click="posts.pop()">delete post</button>
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref } from "@vue/reactivity";
 import PostList from "../components/PostList.vue";
-
+import getPosts from "../composables/getPosts";
 export default {
   name: "Home",
   setup() {
-    const posts = ref([]);
-    const error = ref(null);
-    const load = async () => {
-      try {
-        let data = await fetch("http://localhost:3000/posts");
-        posts.value = await data.json();
-        if (!data.ok) {
-          throw Error("no data available");
-        }
-      } catch (err) {
-        error.value = err.message;
-        console.log(error.value);
-      }
-    };
+    const { posts, error, load } = getPosts();
     load();
     const showpost = ref(true);
     return { posts, showpost, error };
@@ -40,6 +30,9 @@ export default {
 </script>
 
 <style>
+.btn{
+  margin:8px 0px;
+}
 .err {
   color: red;
 }
